@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: IglesiasHub
+Bundle-SymbolicName: IglesiasHub
+Bundle-Version: 1.0.0.qualifier
+Export-Package: me.Creeper96.IglesiasHub
