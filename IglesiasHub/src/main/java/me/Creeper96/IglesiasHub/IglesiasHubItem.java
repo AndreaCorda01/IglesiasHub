@@ -53,10 +53,11 @@ public class IglesiasHubItem
     this.name = sostituisciGettoni(this.name, player);
 	this.name = ChatColor.translateAlternateColorCodes('&', this.name);
 	
-    for (int c = 0; c < this.lore.size() - 1; c++)
+    for (int c = 0; c <= this.lore.size() - 1; c++)
     {
       this.lore.set(c, sostituisciGettoni(this.lore.get(c), player));
-      String s =ChatColor.translateAlternateColorCodes('&',this.lore.get(c));
+      this.lore.set(c,ChatColor.translateAlternateColorCodes('&',this.lore.get(c)));
+      
     }
     
     
