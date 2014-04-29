@@ -78,11 +78,14 @@ public class IglesiasHubItem
    
    public String sostituisciGettoni(String str, Player player)
    {
+	   
 	   if(str.contains("%points%") && this.playerPoints == false)
 	   {
 		   this.playerPoints = true;
 	   }
-	   str.replaceAll("%points%", ""+Main.PlayerPoints.getPoints(player.getName()));
+	   String gettoni = Main.PlayerPoints.getPoints(player.getName())+" ";
+	   str = str.replaceAll("%points%", gettoni);
+	   System.out.println(Main.PlayerPoints.getPoints(player.getName()) + "----"+gettoni+str);
 	   return str;
    }
  }
