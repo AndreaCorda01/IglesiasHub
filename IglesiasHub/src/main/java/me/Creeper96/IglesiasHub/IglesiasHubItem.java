@@ -85,7 +85,7 @@ public class IglesiasHubItem
 	   }
 	   String gettoni = Main.PlayerPoints.getPoints(player.getName())+" ";
 	   str = str.replaceAll("%points%", gettoni);
-	   System.out.println(Main.PlayerPoints.getPoints(player.getName()) + "----"+gettoni+str);
+	   //System.out.println(Main.PlayerPoints.getPoints(player.getName()) + "----"+gettoni+str);
 	   return str;
    }
  }
