@@ -12,5 +12,6 @@
 			<attribute name="javadoc_location" value="http://jd.bukkit.org/rb/apidocs/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Andrea/Desktop/dipendenze/PlayerPoints.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

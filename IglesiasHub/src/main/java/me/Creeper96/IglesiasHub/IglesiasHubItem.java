@@ -24,6 +24,7 @@ public class IglesiasHubItem
   public List<String> lore;
   public String command;
   public ItemStack item;
+  public boolean playerPoints = false;
 
   public IglesiasHubItem(int pos)
  {
@@ -34,14 +35,9 @@ public class IglesiasHubItem
      this.data = Main.plugin.getConfig().getInt(pos + ".data", 1);
     this.amount = Main.plugin.getConfig().getInt(pos + ".amount", 1);
     this.name = Main.plugin.getConfig().getString(pos + ".name");
-   this.lore = Main.plugin.getConfig().getStringList(pos + ".lore");
+    this.lore = Main.plugin.getConfig().getStringList(pos + ".lore");
     this.command = Main.plugin.getConfig().getString(pos + ".command");
-			this.name = ChatColor.translateAlternateColorCodes('&', this.name);
-			
-		    for (int c = 0; c < this.lore.size() - 1; ++c)
-		    {
-		      this.lore.set(c, ChatColor.translateAlternateColorCodes('&',this.lore.get(c)));
-		   }
+
 		    
    }
  
@@ -49,10 +45,21 @@ public class IglesiasHubItem
    {
 				//System.out.println(position+"-"+this.id+"-"+this.amount);
 				//System.out.println(Main.plugin.getConfig().getString("1.id"));
-     this.item = new ItemStack(Material.getMaterial(id.toUpperCase()),amount);
+    this.item = new ItemStack(Material.getMaterial(id.toUpperCase()),amount);
 
     ItemMeta im = this.item.getItemMeta();
-				//System.out.println("nome"+this.name);
+	
+    
+    this.name = sostituisciGettoni(this.name, player);
+	this.name = ChatColor.translateAlternateColorCodes('&', this.name);
+	
+    for (int c = 0; c < this.lore.size() - 1; ++c)
+    {
+      this.lore.set(c, sostituisciGettoni(this.lore.get(c), player));
+      this.lore.set(c, ChatColor.translateAlternateColorCodes('&',this.lore.get(c)));
+    }
+    
+    
     im.setDisplayName(this.name);
     im.setLore(this.lore);
     this.item.setAmount(this.amount);
@@ -66,4 +73,15 @@ public class IglesiasHubItem
 			//System.out.println(player.getName() + "-"+ this.command);
    Main.server.dispatchCommand(player, this.command);
   }
+   
+   
+   public String sostituisciGettoni(String str, Player player)
+   {
+	   if(str.contains("%points%") && this.playerPoints == false)
+	   {
+		   this.playerPoints = true;
+	   }
+	   str.replaceAll("%points%", ""+Main.PlayerPoints.getPoints(player.getName()));
+	   return str;
+   }
  }

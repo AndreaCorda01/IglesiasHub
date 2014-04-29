@@ -2,6 +2,6 @@ name: IglesiasHub
 author: Creeper96_
 version: 1.0-SNAPSHOT
 description: Plugin per la hub creato da creeper96
- 
+depend: [PlayerPoints] 
 main: me.Creeper96.IglesiasHub.Main
 load: POSTWORLD

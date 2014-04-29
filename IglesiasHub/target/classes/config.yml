@@ -1,3 +1,5 @@
+#PlayerPoints API
+#Usa %points% per indicare il numero dei punti di un giocatore
 1:
   id:
   data:

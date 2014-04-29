@@ -14,11 +14,13 @@ public class Main extends JavaPlugin
   public static Plugin plugin;
   public static Server server;
   public static List<IglesiasHubItem> items = new ArrayList();
-
+  public static Points PlayerPoints;
+  
   public void onEnable() {
      plugin = this;
     server = getServer();
     plugin.saveDefaultConfig();
+    PlayerPoints = new Points();
     for (int c = 1; c <= 9; ++c)
     {
       if(plugin.getConfig().isSet(""+c))
@@ -28,6 +30,7 @@ public class Main extends JavaPlugin
 			}
     
      server.getPluginManager().registerEvents(new Events(), this);
+     server.getPluginManager().registerEvents(PlayerPoints, this);
    }
 
    public void onDisable() {
