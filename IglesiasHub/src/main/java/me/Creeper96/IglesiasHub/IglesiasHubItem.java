@@ -41,51 +41,53 @@ public class IglesiasHubItem
 		    
    }
  
-   public void crea(Player player)
+   public void crea(Player player, int diff)
    {
-				//System.out.println(position+"-"+this.id+"-"+this.amount);
-				//System.out.println(Main.plugin.getConfig().getString("1.id"));
     this.item = new ItemStack(Material.getMaterial(id.toUpperCase()),amount);
-
     ItemMeta im = this.item.getItemMeta();
-	
-    
-    this.name = sostituisciGettoni(this.name, player);
-	this.name = ChatColor.translateAlternateColorCodes('&', this.name);
-	
-    for (int c = 0; c <= this.lore.size() - 1; c++)
+	this.name = ChatColor.translateAlternateColorCodes('&', this.name); 
+    im.setDisplayName(sostituisciGettoni(this.name, player, diff));
+    for ( int c = 0; c <= this.lore.size()-1; c++)
     {
-      this.lore.set(c, sostituisciGettoni(this.lore.get(c), player));
-      this.lore.set(c,ChatColor.translateAlternateColorCodes('&',this.lore.get(c)));
-      
+       this.lore.set(c,ChatColor.translateAlternateColorCodes('&',this.lore.get(c)));
+    }
+    im.setLore(this.lore);    
+    for (int c = 0; c <= im.getLore().size() - 1; c++)
+    {
+      im.getLore().set(c, sostituisciGettoni(im.getLore().get(c), player,diff));    
     }
     
-    
-    im.setDisplayName(this.name);
-    im.setLore(this.lore);
     this.item.setAmount(this.amount);
      this.item.setItemMeta(im);
     this.item.setDurability((short)this.data);
      player.getInventory().setItem(this.position-1, this.item);
    }
  
+   
+   
    public void click(Player player)
    {
 			//System.out.println(player.getName() + "-"+ this.command);
-   Main.server.dispatchCommand(player, this.command);
+	   if(this.command != "" && this.command != null)
+	   {
+	   Main.server.dispatchCommand(player, this.command);
+	   }
   }
    
    
-   public String sostituisciGettoni(String str, Player player)
+   public String sostituisciGettoni(String str, Player player, int diff)
    {
 	   
-	   if(str.contains("%points%") && this.playerPoints == false)
+	   if(str.contains("%points%"))
 	   {
 		   this.playerPoints = true;
+		   String gettoni = "";
+		   gettoni += ((Main.PlayerPoints.getPoints(player.getName())+diff)+"");		   
+		   //System.out.println("sostituito"+gettoni);
+		   str = str.replaceAll("%points%", gettoni);
 	   }
-	   String gettoni = Main.PlayerPoints.getPoints(player.getName())+" ";
-	   str = str.replaceAll("%points%", gettoni);
-	   //System.out.println(Main.PlayerPoints.getPoints(player.getName()) + "----"+gettoni+str);
+
+	   //System.out.println(Main.PlayerPoints.getPoints(player.getName()) + "----"+str);
 	   return str;
    }
  }

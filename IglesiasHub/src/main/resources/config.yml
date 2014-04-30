@@ -1,5 +1,6 @@
 #PlayerPoints API
 #Usa %points% per indicare il numero dei punti di un giocatore
+#Se usi %points% non funzionerà il comando
 1:
   id: watch
   data: 0

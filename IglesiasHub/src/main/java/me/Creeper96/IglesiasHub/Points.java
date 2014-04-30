@@ -53,10 +53,10 @@ public void changePoints(PlayerPointsChangeEvent event)
 	{
 		if(item.playerPoints)
 		{
-			item.crea(Main.server.getPlayer(event.getPlayerName()));
+			item.crea(Main.server.getPlayer(event.getPlayerName()),event.getChange());
 		}
 	}
-	
+	//System.out.println("Evento ChangePoints"+event.getChange());
 }
 
 }

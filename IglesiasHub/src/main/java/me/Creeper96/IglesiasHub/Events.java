@@ -38,7 +38,7 @@ public class Events
 			event.getPlayer().getInventory().clear();
 			for(IglesiasHubItem item : Main.items)
 			{
-				item.crea(event.getPlayer());
+				item.crea(event.getPlayer(),0);
 			}
 		}
 		
@@ -48,7 +48,7 @@ public class Events
 			event.getPlayer().getInventory().clear();
 			for(IglesiasHubItem item : Main.items)
 			{
-				item.crea(event.getPlayer());
+				item.crea(event.getPlayer(),0);
 			}
 		}
 		
