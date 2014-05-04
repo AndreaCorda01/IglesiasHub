@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
@@ -14,20 +15,26 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class Events
-  implements Listener
+public class Events implements Listener
  {
+	
+	
+	
+@EventHandler
+public void onInteract(PlayerInteractEntityEvent event)
+{	
+	   if(event.getPlayer().getItemInHand().getType() == Material.NAME_TAG)
+	   {
+		   event.setCancelled(true);
+	   }
+}
   @EventHandler
   public void onClickItem(PlayerInteractEvent event)
    {
    if ((event.getAction() != Action.RIGHT_CLICK_AIR) && (event.getAction() != Action.LEFT_CLICK_AIR) && (event.getAction() != Action.LEFT_CLICK_BLOCK) && (event.getAction() != Action.LEFT_CLICK_AIR))
       return;
    
-   if(event.getPlayer().getItemInHand().getType() == Material.NAME_TAG)
-   {
-	   event.setCancelled(true);
-   }
-   
+
     for (IglesiasHubItem i : Main.items)
      {
       if (event.getPlayer().getItemInHand().equals(i.item))
