@@ -1,6 +1,7 @@
 package me.Creeper96.IglesiasHub;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,6 +22,12 @@ public class Events
    {
    if ((event.getAction() != Action.RIGHT_CLICK_AIR) && (event.getAction() != Action.LEFT_CLICK_AIR) && (event.getAction() != Action.LEFT_CLICK_BLOCK) && (event.getAction() != Action.LEFT_CLICK_AIR))
       return;
+   
+   if(event.getPlayer().getItemInHand().getType() == Material.NAME_TAG)
+   {
+	   event.setCancelled(true);
+   }
+   
     for (IglesiasHubItem i : Main.items)
      {
       if (event.getPlayer().getItemInHand().equals(i.item))
