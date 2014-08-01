@@ -1,10 +1,48 @@
+#PlayerPoints API
+#Usa %points% per indicare il numero dei punti di un giocatore
+#Se usi %points% non funzionerà il comando
+
+#I comandi vengono riconosciuti per gli oggetti in base al tutte le caratteristiche, perciò una piccola modifica
+#del nome dell'oggetto potrebbe disattivare il comando al suo click
 1:
-  id:
-  data:
-  amount:
-  name:
+  id: watch
+  data: 0
+  amount: 1
+  name: '&c&lCongegno Inter Servers'
   lore:
-  - riga1
-  - riga2
-  - riga3
-  command:
+  - '&eCliccami per aprire un menu con la lista servers'
+  - '&ee scegliere il server in cui giocare'
+  command: bs servers
+2:
+  id: bone
+  data: 0
+  amount: 1
+  name: '&c&lGestore Pet'
+  lore:
+  - '&eCliccami per aprire il menu per gestire i pet'
+  - '&ee gestire i tuoi animaletti domestici'
+  command: bs pet
+  destra:
+    id: bone
+    data: 0
+    amount: 1
+    name: '&c&lGestore Pet'
+    lore:
+    - '&eCliccami per aprire il menu per gestire i pet'
+    - '&ee gestire i tuoi animaletti domestici'
+    command: bs pet
+  sinistra:
+    id: bone
+    data: 0
+    amount: 1
+    name: '&c&lGestore Pet'
+    lore:
+    - '&eCliccami per aprire il menu per gestire i pet'
+    - '&ee gestire i tuoi animaletti domestici'
+    command: bs pet
+3:
+  id: name_tag
+  data: 0
+  amount: 1
+  name: '&bTuoi Gettoni: &a %points% '
+  lore:
