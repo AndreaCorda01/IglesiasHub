@@ -25,18 +25,42 @@ public class IglesiasHubItem
   public String command;
   public ItemStack item;
   public boolean playerPoints = false;
+  
+  public IglesiasHubItem destra;
+  public IglesiasHubItem sinistra;
 
-  public IglesiasHubItem(int pos)
+  public IglesiasHubItem(int pos, String azione)
  {
 			
-   this.position = pos;
-
+	this.position = pos;
+   if(azione == "")
+   {
     this.id = Main.plugin.getConfig().getString(pos + ".id");
-     this.data = Main.plugin.getConfig().getInt(pos + ".data", 1);
+    this.data = Main.plugin.getConfig().getInt(pos + ".data", 1);
     this.amount = Main.plugin.getConfig().getInt(pos + ".amount", 1);
     this.name = Main.plugin.getConfig().getString(pos + ".name");
     this.lore = Main.plugin.getConfig().getStringList(pos + ".lore");
     this.command = Main.plugin.getConfig().getString(pos + ".command");
+   }
+   else
+   if(azione == "destra"){
+	    this.id = Main.plugin.getConfig().getString(pos + ".destra.id");
+	    this.data = Main.plugin.getConfig().getInt(pos + ".destra.data", 1);
+	    this.amount = Main.plugin.getConfig().getInt(pos + ".destra.amount", 1);
+	    this.name = Main.plugin.getConfig().getString(pos + ".destra.name");
+	    this.lore = Main.plugin.getConfig().getStringList(pos + ".destra.lore");
+	    this.command = Main.plugin.getConfig().getString(pos + ".destra.command");
+   }
+   else
+	   if(azione == "sinistra"){
+		    this.id = Main.plugin.getConfig().getString(pos + ".sinistra.id");
+		    this.data = Main.plugin.getConfig().getInt(pos + ".sinistra.data", 1);
+		    this.amount = Main.plugin.getConfig().getInt(pos + ".sinistra.amount", 1);
+		    this.name = Main.plugin.getConfig().getString(pos + ".sinistra.name");
+		    this.lore = Main.plugin.getConfig().getStringList(pos + ".sinistra.lore");
+		    this.command = Main.plugin.getConfig().getString(pos + ".sinistra.command");		   		   
+	   }
+    
 
 		    
    }

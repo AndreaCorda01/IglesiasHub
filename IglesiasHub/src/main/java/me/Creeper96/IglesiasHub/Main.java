@@ -25,9 +25,23 @@ public class Main extends JavaPlugin
     {
       if(plugin.getConfig().isSet(""+c))
       {
-					items.add(new IglesiasHubItem(c));
-				}	
-			}
+    	 IglesiasHubItem IH = new IglesiasHubItem(c,"");
+    	  
+		if(plugin.getConfig().isSet(""+c+".destra"))
+		{
+			//System.out.println("CREATO DESTRA");
+			IH.destra = new IglesiasHubItem(c,"destra");
+		}
+		
+		if(plugin.getConfig().isSet(""+c+".sinistra"))
+		{
+			IH.sinistra = new IglesiasHubItem(c,"sinistra");
+		}
+		
+		items.add(IH);
+	
+      }	
+	}
     
      server.getPluginManager().registerEvents(new Events(), this);
      server.getPluginManager().registerEvents(PlayerPoints, this);

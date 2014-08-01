@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -18,6 +19,17 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class Events implements Listener
  {
 	
+	
+	public void piazzaBlocco(BlockPlaceEvent event)
+	{
+		 for (IglesiasHubItem i : Main.items)
+	     {    	
+	      if (event.getPlayer().getItemInHand().equals(i.item))
+	         {
+	    	  	event.setCancelled(true);
+	         }
+	     }
+	}
 	
 	
 @EventHandler
@@ -33,17 +45,50 @@ public void onInteract(PlayerInteractEntityEvent event)
    {
    if ((event.getAction() != Action.RIGHT_CLICK_AIR) && (event.getAction() != Action.LEFT_CLICK_AIR) && (event.getAction() != Action.LEFT_CLICK_BLOCK) && (event.getAction() != Action.LEFT_CLICK_AIR))
       return;
-   
-
+   int c = 0;
     for (IglesiasHubItem i : Main.items)
      {
+    	
+    	
       if (event.getPlayer().getItemInHand().equals(i.item))
          {
-       		i.click(event.getPlayer());
-					event.setCancelled(true);
-					return;
+    	  event.setCancelled(true);
+
+		    if( event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)
+		    {
+		    	if(i.destra != null)
+		    	{
+		    		i.destra.crea(event.getPlayer(),0);
+		    		IglesiasHubItem IH = new IglesiasHubItem(i.position,"");
+		    		IH = i.destra;
+		    		IH.destra = i;
+		    		IH.sinistra = i.sinistra;
+		    		Main.items.set(c, IH);
+		    	}
+		    }
+		    else
+			if( event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK)
+			{
+				if(i.sinistra != null)
+				{
+		    		i.sinistra.crea(event.getPlayer(),0);
+		    		IglesiasHubItem IH = new IglesiasHubItem(i.position,"");
+		    		IH = i.sinistra;
+		    		IH.sinistra = i;
+		    		IH.destra = i.destra;
+		    		Main.items.set(c, IH);		
 				}
+			}
+       		i.click(event.getPlayer());
+			
+			return;
+         }
+      c++;
      }
+    
+
+    
+    
    }
 
 		@EventHandler
